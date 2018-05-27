@@ -1,6 +1,6 @@
 # Override default configurations or Add more configurations for edge-server API
 spring.profiles: docker
 server:
- ssl:
- key-store: /usr/local/java/keystore/edge-server.keystore
- key-store-password: redrocks00
+  ssl:
+  key-store: /usr/local/java/keystore/edge-server.keystore
+  key-store-password: redrocks00
