@@ -1,3 +1,33 @@
 # Override default configurations or Add more configurations for vss API
-
-
+server:
+  port: 8447
+logging:
+  file: /java/C2S_LOGS/vss/vss.log
+info:
+  component: Value Set Service
+ribbon:
+  ReadTimeout: 50000
+security:
+  oauth2:
+    client:
+      client-id: vss
+spring:
+  datasource:
+    # configure url, username and password per environment
+    url: jdbc:mysql://localhost:3306/vss?autoReconnect=true
+    username: root
+    password: admin
+---
+spring.profiles: standalone-ssl
+spring:
+  profiles:
+    include: ssl-default
+server:
+  context-path: /vss
+---
+spring:
+  profiles: docker
+  datasource:
+    url: jdbc:mysql://${C2S_DB_HOST:vss-db.c2s.com}:${C2S_DB_PORT:3306}/vss?autoReconnect=true
+    username: root
+    password: admin
