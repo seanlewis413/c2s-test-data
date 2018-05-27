@@ -1,0 +1,1 @@
+# Consent2Share Configuration Data for Local Development
