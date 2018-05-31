@@ -71,7 +71,7 @@ server.context-path: /contextHandler
 spring:
   profiles: docker
   datasource:
-      url: jdbc:mysql://${C2S_DB_HOST:pcm-db.c2s.com}:3307/pcm?autoReconnect=true
+      url: jdbc:mysql://34.229.39.156:3307/pcm?autoReconnect=true
 c2s:
   context-handler:
     audit-client:
