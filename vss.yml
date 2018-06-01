@@ -28,6 +28,6 @@ server:
 spring:
   profiles: docker
   datasource:
-    url: jdbc:mysql://${C2S_DB_HOST:vss-db.c2s.com}:${C2S_DB_PORT:3306}/vss?autoReconnect=true
+    url: jdbc:mysql://${C2S_DB_HOST:vss-db.c2s.com}:3309/vss?autoReconnect=true
     username: root
     password: admin

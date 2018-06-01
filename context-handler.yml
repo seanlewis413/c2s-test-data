@@ -72,6 +72,8 @@ spring:
   profiles: docker
   datasource:
       url: jdbc:mysql://34.229.39.156:3307/pcm?autoReconnect=true
+      username: root
+      password: admin
 c2s:
   context-handler:
     audit-client:
