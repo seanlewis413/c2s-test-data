@@ -1,2 +1,20 @@
 # Override default configurations or Add more configurations for document-validator
+logging:
+  file: /java/C2S_LOGS/document-validator/document-validator.log
+info:
+  component: Document Validation Service
+ribbon:
+  ReadTimeout: 50000
+hystrix.command.default.execution.timeout.enabled: false
 
+# Set default to enable schematron validation
+c2s:
+  document-validator:
+    enabled-schematron-validation: false
+---
+spring.profiles: standalone-ssl
+spring:
+  profiles:
+    include: ssl-default
+server:
+  context-path: /document-validator
