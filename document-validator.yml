@@ -18,3 +18,9 @@ spring:
     include: ssl-default
 server:
   context-path: /document-validator
+
+spring.profiles: docker
+c2s:
+  document-validator:
+    enabled-schematron-validation: false
+    
