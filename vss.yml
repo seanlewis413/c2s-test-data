@@ -30,4 +30,4 @@ spring:
   datasource:
     url: jdbc:mysql://52.203.151.71:3309/vss?autoReconnect=true
     username: root
-    password: admin
+    password: password
