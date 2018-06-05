@@ -28,6 +28,6 @@ server:
 spring:
   profiles: docker
   datasource:
-    url: jdbc:mysql://52.203.151.71:3309/vss?autoReconnect=true
+    url: jdbc:mysql://54.208.170.166:3309/vss?autoReconnect=true
     username: root
     password: password
