@@ -4,7 +4,7 @@ c2s:
 
 spring:
   application:
-    name: dss
+    name: rest-handler
   profiles:
     active: application-default
   cloud:
