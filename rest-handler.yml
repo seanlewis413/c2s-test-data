@@ -7,6 +7,9 @@ spring:
     name: dss
   profiles:
     active: application-default
+  cloud:
+    client:
+      hostname: REST-HANDLER
 # Configure a symmetric key to use for Encryption and Decryption
 # Please change THE FOLLOWING DEFAULT KEY OUTSIDE OF DEVELOPMENT ENVIRONMENTS!
 encrypt:
