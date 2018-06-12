@@ -1,6 +1,94 @@
-# Override default configurations or Add more configurations for edge-server API
-#pring.profiles: docker
-#server:
-#  ssl:
-#  key-store: /usr/local/java/keystore/edge-server.keystore
-#  key-store-password: "redrocks00"
+info:
+  component: Edge Server
+logging:
+  file: /java/C2S_LOGS/edge-server/edgeServer.log
+ribbon:
+  ReadTimeout: 50000
+response:
+  header:
+    key: WWW-Authenticate
+    value: Application driven
+# secure management endpoints
+management:
+  security:
+    enabled: true
+    sessions: stateless
+    role: ADMIN
+    # forward compatibility
+    roles: ${management.security.role}
+security:
+  basic:
+    enabled: true
+    path: ${management.context-path}/**
+  user:
+    name: admin
+    password: changeit
+    role: ${management.security.role}
+  sessions: ${management.security.sessions}
+# TODO: until finding a better solution, disable hystrix command timeout in edge server. See https://github.com/spring-cloud/spring-cloud-netflix/issues/321#issuecomment-97727313
+hystrix.command.default.execution.timeout.enabled: false
+zuul:
+  ignoredServices: '*'
+  routes:
+    # NOTE regarding 'sensitiveHeaders' properties:
+    #      By default, Zuul will strip the 'Cookie', 'Set-Cookie', and 'Authorization' HTTP headers
+    #      from incoming HTTP requests before forwarding them to the appropriate downstream services.
+    #      Since UAA and UAA-secured services require the 'Authorization' header to work, you must
+    #      set the 'sensativeHeaders' property for secured routes to only strip out 'Cookie' and
+    #      'Set-Cookie' headers.
+    #
+    #      For more info, see: http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_cookies_and_sensitive_headers
+    c2s-ui:
+      path: /${c2s.c2s-ui.context-path}/**
+    staff-ui:
+      path: /${c2s.staff-ui.context-path}/**
+    provider-ui:
+      path: /${c2s.provider-ui.context-path}/**
+    master-ui:
+      path: /${c2s.master-ui.context-path}/**
+    master-ui-api:
+      path: /master-ui-api/**
+    c2s-ui-api:
+      path: /c2s-ui-api/**
+      # Override Zuul default:
+      sensitiveHeaders: Cookie,Set-Cookie
+    staff-ui-api:
+      path: /staff-ui-api/**
+      # Override Zuul default:
+      sensitiveHeaders: Cookie,Set-Cookie
+    provider-ui-api:
+      path: /provider-ui-api/**
+      # Override Zuul default:
+      sensitiveHeaders: Cookie,Set-Cookie
+    pep-api:
+      path: /pep-api/**
+      # Override Zuul default:
+      sensitiveHeaders: Cookie,Set-Cookie
+    rest-handler:
+      path: /rest-handler/**
+      sensitiveHeaders: Cookie,Set-Cookie
+    uaa:
+      path: /uaa/**
+      # Override Zuul default:
+      sensitiveHeaders: ''
+      # UAA is not registered with the discovery server, so the endpoint must be explictly mapped to the URL
+      #    If you enable SSL for UAA, you must change the URL to 'https' and update the port for UAA below:
+      url: http://localhost:8080/uaa
+c2s:
+  edge-server:
+    root-redirect-url: redirect:/rest-handler
+    expose-trace-headers-in-response: false
+server:
+  port: 80
+eureka:
+  instance:
+    non-secure-port: 80
+---
+spring.profiles: docker
+zuul:
+  routes:
+    uaa:
+      path: /uaa/**
+      # UAA is not registered with the discovery server, so the endpoint must be explictly mapped to the URL
+      #    If you enable SSL for UAA, you must change the URL to 'https' and update the port for UAA below:
+      url: http://uaa.c2s.com:8080/uaa
