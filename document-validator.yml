@@ -8,6 +8,7 @@ ribbon:
 hystrix.command.default.execution.timeout.enabled: false
 
 # Set default to enable schematron validation
+spring.profiles: docker
 c2s:
   document-validator:
     enabled-schematron-validation: false
