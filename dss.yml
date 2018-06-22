@@ -4,3 +4,5 @@ c2s:
     document-validator:
       context-path: "/document-validator"
 ---
+spring.profiles: java
+c2s.dss.document-validator.context-path: "/"
