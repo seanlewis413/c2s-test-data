@@ -1,9 +1,6 @@
 # Override default configurations or Add more configurations for dss
-spring.profiles: docker
+spring.profiles: java
 c2s:
   dss:
     document-validator:
-      context-path: ""
----
-spring.profiles: java
-c2s.dss.document-validator.context-path: ""
+      context-path: "/"
