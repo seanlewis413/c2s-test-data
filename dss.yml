@@ -1,4 +1,5 @@
 # Override default configurations or Add more configurations for dss
+spring.profiles: docker
 c2s:
   dss:
     document-validator:
