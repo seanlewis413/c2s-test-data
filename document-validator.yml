@@ -12,15 +12,15 @@ c2s:
   document-validator:
     enabled-schematron-validation: false
 ---
-spring.profiles: standalone-ssl
-spring:
-  profiles:
-    include: ssl-default
-server:
-  context-path: /document-validator
+# spring.profiles: standalone-ssl
+# spring:
+#   profiles:
+#     include: ssl-default
+# server:
+#   context-path: /document-validator
 
-spring.profiles: docker
-c2s:
-  document-validator:
-    enabled-schematron-validation: false
+# spring.profiles: docker
+# c2s:
+#   document-validator:
+#     enabled-schematron-validation: false
     
