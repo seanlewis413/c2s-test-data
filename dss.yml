@@ -2,5 +2,5 @@
 c2s:
   dss:
     document-validator:
-      context-path: "/"
+      context-path: "/document-validator"
 ---
