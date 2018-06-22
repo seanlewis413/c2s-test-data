@@ -3,7 +3,7 @@ spring.profiles: docker
 c2s:
   dss:
     document-validator:
-      context-path: "/document-validator"
+      context-path: ""
 ---
 spring.profiles: java
 c2s.dss.document-validator.context-path: ""
