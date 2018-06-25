@@ -3,4 +3,4 @@ spring.profiles: java
 c2s:
   dss:
     document-validator:
-      context-path: "/"
+      context-path: "http://localhost:8080/document-validator-1.1.0/"
